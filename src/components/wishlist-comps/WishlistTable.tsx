@@ -65,22 +65,22 @@ export default function WishlistTableStatic() {
                     </TableHeader>
 
                     <TableBody>
-                        {wishlistDetails?.data.map((wish) => <TableRow key={wish._id} className="hover:bg-gray-50/70 transition-colors">
+                        {wishlistDetails?.data?.map((wish) => <TableRow key={wish?._id} className="hover:bg-gray-50/70 transition-colors">
                             <TableCell className={cellLeft}>
                                 <div className="relative flex items-center gap-4">
                                     <button
                                         type="button"
                                         className="cursor-pointer absolute -left-3 -top-2 grid h-5 w-5 place-items-center rounded-full bg-red-500 text-white shadow ring-1 ring-black/5"
                                         aria-label="Remove from wishlist"
-                                        onClick={()=>handleRemoveCartFromWish(wish._id)}
+                                        onClick={()=>handleRemoveCartFromWish(wish?._id)}
                                     >
                                         <Trash2 className="h-3.5 w-3.5" />
                                     </button>
 
                                     <div className="overflow-hidden rounded-lg ring-1 ring-gray-200 shrink-0">
                                         <Image
-                                            src={wish.imageCover}
-                                            alt={wish.title}
+                                            src={wish?.imageCover}
+                                            alt={wish?.title}
                                             width={68}
                                             height={68}
                                             className="h-[68px] w-[68px] object-cover"
@@ -89,7 +89,7 @@ export default function WishlistTableStatic() {
 
                                     <div className="min-w-0">
                                         <p className="font-semibold text-gray-900 line-clamp-1">
-                                            {wish.title}
+                                            {wish?.title}
                                         </p>
                                         <div className="mt-1 flex items-center gap-2">
 
@@ -98,14 +98,14 @@ export default function WishlistTableStatic() {
                                             </Badge>
 
 
-                                            <span className="text-xs text-gray-500">{wish.category.name}</span>
+                                            <span className="text-xs text-gray-500">{wish?.category?.name}</span>
                                         </div>
                                     </div>
                                 </div>
                             </TableCell>
 
                             <TableCell className={cellCenter}>
-                                <span className="font-semibold text-gray-800">{wish.price} EGP</span>
+                                <span className="font-semibold text-gray-800">{wish?.price} EGP</span>
                             </TableCell>
 
                             <TableCell className={cellCenter}>
@@ -121,7 +121,7 @@ export default function WishlistTableStatic() {
                                     <button
                                         type="button"
                                         className="cursor-pointer inline-flex items-center justify-center rounded-full bg-yellow-500 px-4 py-2 text-sm font-semibold text-black shadow hover:bg-yellow-600 transition w-full sm:w-auto sm:flex-none min-w-[130px]"
-                                        onClick={()=>handleAddToCart(wish._id)}
+                                        onClick={()=>handleAddToCart(wish?._id)}
                                     >
                                         Add to cart
                                     </button>
