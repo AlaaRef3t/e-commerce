@@ -1,6 +1,7 @@
 import { getUserCart } from "@/actions/cart.action";
 import { createContext, useContext, useEffect, useState } from "react";
 import { CartResponse } from './../../interfaces/cart.model';
+import { useSession } from 'next-auth/react';
 
 interface CartContextType{
     cartDetails: CartResponse | null,
@@ -16,6 +17,7 @@ export default function CartContextProvider({children}: {children: React.ReactNo
     
     const [cartDetails, setCartDetails] = useState(null)
 
+    const {data: session} = useSession()
     async function getUserCartBridge() {
         const response = await getUserCart()
             console.log(response?.data);
@@ -25,7 +27,7 @@ export default function CartContextProvider({children}: {children: React.ReactNo
 
     useEffect(() => {
         getUserCartBridge()
-    },[])
+    },[session])
 
     return (
         <CartContext.Provider value={{cartDetails , getUserCartBridge}}>

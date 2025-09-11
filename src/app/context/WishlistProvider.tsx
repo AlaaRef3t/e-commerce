@@ -1,5 +1,6 @@
 import { getUserWishlist } from "@/actions/wishlist.action";
 import { WishlistResponse } from "@/interfaces/wishlist.model";
+import { useSession } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
@@ -17,7 +18,7 @@ export default function WishlistContextProvider({ children }: { children: React.
 
     const [wishlistDetails, setWishlistDetails] = useState(null)
 
-
+const {data: session} = useSession()
     async function getUserWishlistBridge() {
         const response = await getUserWishlist()
 
@@ -26,7 +27,7 @@ export default function WishlistContextProvider({ children }: { children: React.
 
     useEffect(() => {
         getUserWishlistBridge()
-    },[])
+    },[session])
 
     return <WishlistContext.Provider value={{ wishlistDetails, getUserWishlistBridge }}>
 
