@@ -66,13 +66,13 @@ export default function CartTable() {
                     </TableHeader>
 
                     <TableBody>
-                        {cartDetails?.data?.products.map((product) => <TableRow key={product._id} className="hover:bg-gray-50/70 transition-colors">
+                        {cartDetails?.data?.products?.map((product) => <TableRow key={product?._id} className="hover:bg-gray-50/70 transition-colors">
                             <TableCell className="p-4 text-center">
                                 <div className="flex items-center gap-4">
                                     <div className="relative">
                                         {/* Remove */}
                                         <button
-                                            onClick={() => handleRemoveCart(product.product._id)}
+                                            onClick={() => handleRemoveCart(product?.product?._id)}
                                             type="button"
                                             className="cursor-pointer absolute -top-2 -left-2 z-10 grid h-[22px] w-[22px] place-items-center rounded-full bg-red-500 text-white shadow ring-1 ring-black/5"
                                             aria-label="Remove item"
@@ -83,7 +83,7 @@ export default function CartTable() {
                                         {/* Image */}
                                         <div className="overflow-hidden rounded-lg ring-1 ring-gray-200">
                                             <Image
-                                                src={product?.product.imageCover}
+                                                src={product?.product?.imageCover}
                                                 alt="Product image"
                                                 width={68}
                                                 height={68}
@@ -93,19 +93,19 @@ export default function CartTable() {
                                     </div>
 
                                     <div className="min-w-0">
-                                        <p className="font-semibold text-gray-900 line-clamp-1">{product.product.title.split(" ").slice(0, 4).join(" ")}</p>
+                                        <p className="font-semibold text-gray-900 line-clamp-1">{product?.product?.title.split(" ").slice(0, 4).join(" ")}</p>
                                         <div className="mt-1 flex items-center gap-2">
                                             <Badge className="bg-yellow-500 text-black hover:bg-yellow-500/90">
                                                 In stock
                                             </Badge>
-                                            <span className="text-xs text-gray-500">{product.product.category.name}</span>
+                                            <span className="text-xs text-gray-500">{product?.product?.category?.name}</span>
                                         </div>
                                     </div>
                                 </div>
                             </TableCell>
 
                             <TableCell className="p-2  text-left">
-                                <span className="text-gray-700 font-semibold">{product.price} EGP</span>
+                                <span className="text-gray-700 font-semibold">{product?.price} EGP</span>
                             </TableCell>
 
                             <TableCell className="p-2 text-left">
@@ -113,15 +113,15 @@ export default function CartTable() {
                                     <button
 
                                         className="cursor-pointer grid h-8 w-8 place-items-center rounded-full border border-gray-300 text-gray-700 hover:border-yellow-500 hover:text-yellow-600 transition"
-                                        onClick={() => handleUpdateProduct(product.product._id, product.count + 1)}
+                                        onClick={() => handleUpdateProduct(product?.product?._id, product?.count + 1)}
                                     >
                                         +
                                     </button>
-                                    <span className="w-6 text-center font-semibold text-gray-800">{product.count}</span>
+                                    <span className="w-6 text-center font-semibold text-gray-800">{product?.count}</span>
                                     <button
 
                                         className="cursor-pointer grid h-8 w-8 place-items-center rounded-full border border-gray-300 text-gray-700 hover:border-yellow-500 hover:text-yellow-600 transition"
-                                        onClick={() => handleUpdateProduct(product.product._id, product.count - 1)}
+                                        onClick={() => handleUpdateProduct(product?.product?._id, product?.count - 1)}
                                     >
                                         –
                                     </button>
@@ -129,7 +129,7 @@ export default function CartTable() {
                             </TableCell>
 
                             <TableCell className="p-2 align-middle text-left">
-                                <span className="text-base font-semibold text-gray-900">{product.price * product.count} EGP</span>
+                                <span className="text-base font-semibold text-gray-900">{product?.price * product?.count} EGP</span>
                             </TableCell>
                         </TableRow>)}
 
@@ -144,7 +144,7 @@ export default function CartTable() {
                     <div className="flex items-center justify-between sm:justify-start gap-8 w-full sm:w-auto">
                         <span className="text-sm text-gray-500">Total</span>
                         <span className="text-xl font-bold text-gray-900">
-                            {cartDetails?.data.totalCartPrice} EGP
+                            {cartDetails?.data?.totalCartPrice} EGP
                         </span>
                     </div>
 

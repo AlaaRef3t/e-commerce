@@ -208,9 +208,9 @@ export default function Navbar() {
                     <li className="-mx-1 mb-2 rounded-lg bg-gray-50 px-2.5 py-2">
                       <div className="flex items-center gap-2">
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/15 overflow-hidden">
-                          {session?.data.user?.image ? (
+                          {session?.data?.user?.image ? (
                             <img
-                              src={session.data.user.image}
+                              src={session?.data?.user?.image}
                               alt={"User"}
                               className="h-full w-full object-cover"
                             />
@@ -220,10 +220,10 @@ export default function Navbar() {
                         </div>
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold text-gray-800 leading-5">
-                            {session?.data.user?.name}
+                            {session?.data?.user?.name}
                           </p>
                           <p className="truncate text-xs text-gray-500 leading-4">
-                            {session?.data.user?.email}
+                            {session?.data?.user?.email}
                           </p>
                         </div>
                       </div>
@@ -287,10 +287,10 @@ export default function Navbar() {
                   <li className="-mx-1 mb-2 rounded-lg bg-gray-50 px-2.5 py-2">
                     <div className="flex items-center gap-2">
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/15 overflow-hidden">
-                        {session?.data.user?.image ? (
+                        {session?.data?.user?.image ? (
                           <img
-                            src={session.data.user.image}
-                            alt={session.data.user.name || "User"}
+                            src={session?.data?.user?.image}
+                            alt={session?.data?.user?.name || "User"}
                             className="h-full w-full object-cover"
                           />
                         ) : (
@@ -299,10 +299,10 @@ export default function Navbar() {
                       </div>
                       <div className="min-w-0">
                         <p className="truncate text-sm font-semibold text-gray-800 leading-5">
-                          {session?.data.user?.name}
+                          {session?.data?.user?.name}
                         </p>
                         <p className="truncate text-xs text-gray-500 leading-4">
-                          {session?.data.user?.email}
+                          {session?.data?.user?.email}
                         </p>
                       </div>
                     </div>
