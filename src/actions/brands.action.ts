@@ -1,0 +1,73 @@
+"use server";
+
+async function safeJson(res: Response) {
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function getBrands() {
+  try {
+    const res = await fetch("https://ecommerce.routemisr.com/api/v1/brands", {
+      method: "GET",
+      cache: "no-store",
+      next: { revalidate: 0 },
+    });
+
+    const json = await safeJson(res);
+
+    if (!res.ok) {
+      return {
+        data: [],
+        status: res.status,
+        message: json?.message || "An Error",
+      };
+    }
+
+    return {
+      data: json?.data,
+      status: res.status,
+      message: json?.message,
+    };
+  } catch {
+    return {
+      data: [],
+      status: 500,
+      message: "An Error",
+    };
+  }
+}
+
+export async function getBrandsDetails(id: string) {
+  try {
+    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/brands/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      next: { revalidate: 0 },
+    });
+
+    const json = await safeJson(res);
+
+    if (!res.ok) {
+      return {
+        data: [],
+        status: res.status,
+        message: json?.message || "An Error",
+      };
+    }
+
+    return {
+      data: json?.data,
+      status: res.status,
+      message: json?.message,
+    };
+  } catch {
+    return {
+      data: [],
+      status: 500,
+      message: "An Error",
+    };
+  }
+}
