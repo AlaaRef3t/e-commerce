@@ -1,6 +1,5 @@
 "use server";
 
-/** Helper: قراءة JSON بأمان */
 async function safeJson(res: Response) {
   try {
     return await res.json();
@@ -9,7 +8,6 @@ async function safeJson(res: Response) {
   }
 }
 
-/** GET: كل المنتجات */
 export async function getProducts() {
   try {
     const res = await fetch("https://ecommerce.routemisr.com/api/v1/products", {
@@ -42,7 +40,6 @@ export async function getProducts() {
   }
 }
 
-/** GET: تفاصيل منتج */
 export async function getProductsDetails(id: string) {
   try {
     const res = await fetch(`https://ecommerce.routemisr.com/api/v1/products/${id}`, {

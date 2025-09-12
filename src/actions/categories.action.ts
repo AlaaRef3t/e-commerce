@@ -1,6 +1,5 @@
 "use server";
 
-/** Helper: قراءة JSON بأمان */
 async function safeJson(res: Response) {
   try {
     return await res.json();
@@ -9,7 +8,6 @@ async function safeJson(res: Response) {
   }
 }
 
-/** GET: كل الكاتيجوريز */
 export async function getCategories() {
   try {
     const res = await fetch("https://ecommerce.routemisr.com/api/v1/categories", {
@@ -42,7 +40,6 @@ export async function getCategories() {
   }
 }
 
-/** GET: تفاصيل كاتيجوري بالـid */
 export async function getCategoryDetails(id: string) {
   try {
     const res = await fetch(`https://ecommerce.routemisr.com/api/v1/categories/${id}`, {

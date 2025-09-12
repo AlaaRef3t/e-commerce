@@ -2,7 +2,6 @@
 
 import { getUserToken } from "@/lib/token.utils";
 
-/** Helper: يحاول يرجّع JSON بأمان حتى في حالات الأخطاء */
 async function safeJson(res: Response) {
   try {
     return await res.json();
@@ -11,7 +10,6 @@ async function safeJson(res: Response) {
   }
 }
 
-/** Helper: يبني الـheaders مع التوكن */
 function buildHeaders(token: string | null) {
   return {
     "Content-Type": "application/json",

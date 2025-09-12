@@ -2,7 +2,6 @@
 
 import { getUserToken } from "@/lib/token.utils";
 
-/** Helper: يحاول يقرأ الـJSON بأمان حتى في حالات الأخطاء */
 async function safeJson(res: Response) {
   try {
     return await res.json();
@@ -11,7 +10,6 @@ async function safeJson(res: Response) {
   }
 }
 
-/** Helper: يبني الـheaders مع التوكن */
 function buildHeaders(token: string | null) {
   return {
     "Content-Type": "application/json",
@@ -19,7 +17,6 @@ function buildHeaders(token: string | null) {
   } as HeadersInit;
 }
 
-/** GET: /wishlist */
 export async function getUserWishlist() {
   try {
     const token = await getUserToken();
@@ -27,8 +24,8 @@ export async function getUserWishlist() {
     const res = await fetch("https://ecommerce.routemisr.com/api/v1/wishlist", {
       method: "GET",
       headers: buildHeaders(token as string),
-      cache: "no-store",          // مهم لتفادي الكاش
-      next: { revalidate: 0 },    // يضمن الديناميكية في App Router
+      cache: "no-store",          
+      next: { revalidate: 0 },    
     });
 
     const data = await safeJson(res);
