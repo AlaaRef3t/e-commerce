@@ -3,7 +3,7 @@ import { LoginInputs } from "@/interfaces/login.model";
 import { LoaderCircle, Eye, EyeOff } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -11,7 +11,8 @@ import toast from "react-hot-toast";
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const {
     register,
     handleSubmit,
@@ -20,23 +21,31 @@ export default function LoginPage() {
 
   async function onSubmit(values: LoginInputs) {
     try {
-      const response = await signIn("credentials", {
+      
+      const callbackUrl = searchParams.get("callbackUrl") ?? "/";
+
+      const res = await signIn("credentials", {
         email: values.email,
         password: values.password,
-        redirect: false,
+        redirect: false,       
+        callbackUrl,        
       });
 
-      if (response?.ok) {
+      if (res?.ok) {
         toast.success("Successfully Logged in!");
-        router.push("/");
         setErrorMessage(null);
-      } else {
-        toast.error("Failed to login!");
-        setErrorMessage("Email or password incorrect");
+
+        
+       
+        window.location.assign(res.url ?? callbackUrl);
+        return;
       }
+
+      toast.error(res?.error ?? "Failed to login!");
+      setErrorMessage("Email or password incorrect");
     } catch (error) {
       toast.error("An error occurred during login!");
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -46,6 +55,7 @@ export default function LoginPage() {
         <p className="text-center font-extrabold text-2xl sm:text-3xl tracking-tight mb-6">
           Sign in now
         </p>
+
         {errorMessage && (
           <p className="text-red-800 text-center pb-1">{errorMessage}</p>
         )}
@@ -56,25 +66,29 @@ export default function LoginPage() {
             placeholder="Email"
             className="w-full rounded-full border border-gray-300 px-4 py-3 outline-none
                        focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-            {...register("email", { required: "Email Is Required" })}
+            {...register("email", { required: "Email is required" })}
+            disabled={isSubmitting}
+            autoComplete="email"
           />
           {errors.email && (
             <p className="text-red-800">{errors.email.message}</p>
           )}
 
-          
           <div className="relative">
             <input
               type={showPassword ? "password" : "text"}
               placeholder="Password"
               className="w-full rounded-full border border-gray-300 px-4 py-3 pr-10 outline-none
                          focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-              {...register("password", { required: "Password Is Required" })}
+              {...register("password", { required: "Password is required" })}
+              disabled={isSubmitting}
+              autoComplete="current-password"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-yellow-600"
+              aria-label={showPassword ? "Show password" : "Hide password"}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -91,7 +105,8 @@ export default function LoginPage() {
             type="submit"
             className="w-full rounded-full bg-yellow-500 text-white py-2.5 font-semibold
              shadow hover:bg-yellow-600 active:translate-y-[1px] transition cursor-pointer
-             flex items-center justify-center gap-2"
+             flex items-center justify-center gap-2 disabled:opacity-60"
+            disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
@@ -105,7 +120,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-[10px] sm:text-xs text-gray-500">
-          Don&apos;t have account?
+          Don&apos;t have an account?
           <Link href="/register">
             <span className="ml-1 text-yellow-500 underline underline-offset-2 font-extrabold cursor-pointer hover:text-yellow-600">
               Sign Up
