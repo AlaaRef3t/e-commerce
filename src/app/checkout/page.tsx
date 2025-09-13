@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useCart } from "../context/CartProvider";
 
-export default function checkoutPage() {
+export default function CheckoutPage() {
   interface inputs {
     details: string;
     city: string;
@@ -107,7 +107,7 @@ export default function checkoutPage() {
 
 
         </div>
-      </div> : <h2 className="text-center text-4xl">Please add any product to your cart</h2>}
+      </div> : <h2 className="text-center text-2xl">Please add any product to your cart</h2>}
     </>
   );
 }
