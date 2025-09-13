@@ -23,7 +23,7 @@ import { addProductToWishlist } from "@/actions/wishlist.action";
 
 export default function ProductCard({ product }: { product: Products }) {
   const { getUserCartBridge } = useCart();
-  const {getUserWishlistBridge } = useWishlist();
+  const { getUserWishlistBridge } = useWishlist();
 
   async function handleAddToCart(productId: string) {
 
@@ -42,7 +42,7 @@ export default function ProductCard({ product }: { product: Products }) {
 
   }
 
- 
+
   useEffect(() => {
     AOS.init({ duration: 800 });
   }, []);
@@ -132,11 +132,10 @@ export default function ProductCard({ product }: { product: Products }) {
           className="
     absolute top-1/2 right-3 -translate-y-1/2
     flex flex-col items-center gap-2.5
-    translate-x-16 group-hover:translate-x-0
+    translate-x-0 md:translate-x-16 md:group-hover:translate-x-0
     transition-all duration-300 ease-out
   "
         >
-
           <div className="relative group/tooltip">
             <button
               aria-label="Quick View"
@@ -152,12 +151,11 @@ export default function ProductCard({ product }: { product: Products }) {
             >
               <Link href={`/product/${product._id}`}>
                 <Eye className="h-[18px] w-[18px] text-gray-700 hover:text-yellow-500" />
-
               </Link>
-
             </button>
             <span
               className="
+        hidden sm:block
         absolute right-full top-1/2 -translate-y-1/2 mr-2
         whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-xs text-white
         opacity-0 group-hover/tooltip:opacity-100
@@ -168,10 +166,9 @@ export default function ProductCard({ product }: { product: Products }) {
             </span>
           </div>
 
-
           <div className="relative group/tooltip">
             <button
-              onClick={()=>handleAddToCart(product._id)}
+              onClick={() => handleAddToCart(product._id)}
               aria-label="Add to Cart"
               className="
         p-2.5 rounded-full
@@ -181,13 +178,13 @@ export default function ProductCard({ product }: { product: Products }) {
         hover:border-gray-300
         transition-all
         cursor-pointer
-
       "
             >
-              <ShoppingCart className="h-[18px] w-[18px] text-gray-700 cursor-pointer  hover:text-yellow-500" />
+              <ShoppingCart className="h-[18px] w-[18px] text-gray-700 hover:text-yellow-500" />
             </button>
             <span
               className="
+        hidden sm:block
         absolute right-full top-1/2 -translate-y-1/2 mr-2
         whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-xs text-white
         opacity-0 group-hover/tooltip:opacity-100
@@ -198,9 +195,9 @@ export default function ProductCard({ product }: { product: Products }) {
             </span>
           </div>
 
-
           <div className="relative group/tooltip">
             <button
+              onClick={() => handleAddToWishlist(product._id)}
               aria-label="Wishlist"
               className="
         p-2.5 rounded-full
@@ -211,23 +208,23 @@ export default function ProductCard({ product }: { product: Products }) {
         transition-all
         cursor-pointer
       "
-              onClick={()=> handleAddToWishlist(product._id)}
             >
-              <Heart className="h-[18px] w-[18px] text-gray-700 cursor-pointer  hover:text-yellow-500" />
+              <Heart className="h-[18px] w-[18px] text-gray-700 hover:text-yellow-500" />
             </button>
             <span
               className="
+        hidden sm:block
         absolute right-full top-1/2 -translate-y-1/2 mr-2
         whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-xs text-white
         opacity-0 group-hover/tooltip:opacity-100
         transition-opacity duration-200
-        
       "
             >
               Wishlist
             </span>
           </div>
         </div>
+
 
       </Card>
     </div>
