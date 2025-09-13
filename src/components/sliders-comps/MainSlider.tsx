@@ -14,7 +14,7 @@ import 'swiper/css/pagination';
 
 
 // import required modules
-import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { EffectCube, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function MainSlider() {
@@ -39,7 +39,7 @@ export default function MainSlider() {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[EffectFade, Navigation, Pagination]}
+                modules={[EffectCube, Navigation, Pagination]}
                 className="mySwiper"
             >
                 <SwiperSlide>
