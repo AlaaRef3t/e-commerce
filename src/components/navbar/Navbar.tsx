@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ShoppingCart, Heart, Search, User, ShoppingBasket, LogOut } from "lucide-react";
+import { ShoppingCart, Heart, User,  LogOut } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -29,10 +29,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (session?.data?.user) {
+      console.log("User:", session.data.user);
+
+    }
+  }, [session]);
 
 
   const { cartDetails } = useCart();
-  const { wishlistDetails} = useWishlist()
+  const { wishlistDetails } = useWishlist()
 
   // console.log(cartDetails, " from navbar");
 
@@ -174,7 +180,7 @@ export default function Navbar() {
                 variant="default"
                 className="  absolute -top-2 -right-1.5 !p-0 !h-[18px] !w-[18px] !rounded-full flex items-center justify-center  !bg-red-500 !text-white text-[10px] font-bold shadow"
               >
-                {cartDetails?.numOfCartItems ?cartDetails?.numOfCartItems : 0 }
+                {cartDetails?.numOfCartItems ? cartDetails?.numOfCartItems : 0}
               </Badge>
 
               <ShoppingCart size={22} />
@@ -185,7 +191,7 @@ export default function Navbar() {
                 variant="default"
                 className=" absolute -top-2 -right-1.5 !p-0 !h-[18px] !w-[18px] !rounded-full flex items-center justify-center  !bg-red-500 !text-white text-[10px] font-bold shadow  "
               >
-                {wishlistDetails?.count ?wishlistDetails?.count : 0 }
+                {wishlistDetails?.count ? wishlistDetails?.count : 0}
               </Badge>
               <Heart size={22} />
             </Link>
