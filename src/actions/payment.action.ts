@@ -46,7 +46,7 @@ export async function getOnlinePayment(cartId: string, shippingAddress : {shippi
     
     try {
         const token = await getUserToken();
-        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://e-commerce-gobuy.vercel.app/`,
              shippingAddress ,
             {
                 headers: {
@@ -79,7 +79,7 @@ export async function getAllOrders(cartId :string) {
     
     try {
         const token = await getUserToken();
-        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/user/${cartId}`,
+        const response = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${cartId}`,
               
             {
                 headers: {
