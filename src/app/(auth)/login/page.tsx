@@ -21,27 +21,27 @@ export default function LoginPage() {
 
   async function onSubmit(values: LoginInputs) {
     try {
-      
+
       const callbackUrl = searchParams.get("callbackUrl") ?? "/";
 
-      const res = await signIn("credentials", {
+      const response = await signIn("credentials", {
         email: values.email,
         password: values.password,
-        redirect: false,       
-        callbackUrl,        
+        redirect: false,
+        callbackUrl,
       });
 
-      if (res?.ok) {
+      if (response?.ok) {
         toast.success("Successfully Logged in!");
         setErrorMessage(null);
 
-        
-       
-        window.location.assign(res.url ?? callbackUrl);
+
+
+        window.location.assign(response.url ?? callbackUrl);
         return;
       }
 
-      toast.error(res?.error ?? "Failed to login!");
+      toast.error(response?.error ?? "Failed to login!");
       setErrorMessage("Email or password incorrect");
     } catch (error) {
       toast.error("An error occurred during login!");
