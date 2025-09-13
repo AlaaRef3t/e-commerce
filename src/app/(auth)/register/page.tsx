@@ -1,7 +1,7 @@
 "use client";
 import { RegInputs } from "@/interfaces/register.model";
 import axios from "axios";
-import { LoaderCircle } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -10,8 +10,13 @@ import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(null)
+  const [showPassword, setShowPassword] = useState(true);
+  const [showRePassword, setShowRePassword] = useState(true);
+
+
   const router = useRouter()
-  const { register, handleSubmit, formState: { errors , isSubmitting } } = useForm<RegInputs>()
+  const { register, handleSubmit, getValues, formState: { errors, isSubmitting } } = useForm<RegInputs>()
+
 
   async function onSubmit(values: RegInputs) {
 
@@ -63,22 +68,61 @@ export default function RegisterPage() {
             {...register("email", { required: "Email Is Required" })}
           />
           {errors.email && <p className="text-red-800">{errors.email.message}</p>}
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full rounded-full border border-gray-300 px-4 py-3 outline-none
-                       focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-            {...register("password", { required: "Password Is Required" })}
-          />
+
+
+
+          {/* Password */}
+          <div className="relative">
+            <input
+              type={showPassword ? "password" : "text"}
+              placeholder="Password"
+              className="w-full rounded-full border border-gray-300 px-4 py-3 pr-10 outline-none
+               focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              {...register("password", {
+                required: "Password Is Required",
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  message: "Password must be at least 8 characters and like Ahmed@123",
+                },
+              })}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-yellow-600"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
           {errors.password && <p className="text-red-800">{errors.password.message}</p>}
-          <input
-            type="password"
-            placeholder="RePassword"
-            className="w-full rounded-full border border-gray-300 px-4 py-3 outline-none
-                       focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-            {...register("rePassword", { required: "Re Password required" })}
-          />
-          {errors.rePassword && <p className="text-red-800">{errors.rePassword.message}</p>}
+
+          {/* RePassword */}
+          <div className="relative">
+            <input
+              type={showRePassword ? "password" : "text"}
+              placeholder="RePassword"
+              className="w-full rounded-full border border-gray-300 px-4 py-3 pr-10 outline-none
+               focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              {...register("rePassword", {
+                required: "Re Password is required",
+                validate: (value) =>
+                  value === getValues("password") || "Passwords must match",
+              })}
+            />
+            <button
+              type="button"
+              onClick={() => setShowRePassword(!showRePassword)}
+              className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-yellow-600"
+              aria-label={showRePassword ? "Hide rePassword" : "Show rePassword"}
+            >
+              {showRePassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+          {errors.rePassword && (
+            <p className="text-red-800">{errors.rePassword.message}</p>
+          )}
+
           <input
             type="tel"
             placeholder="Phone Number"
