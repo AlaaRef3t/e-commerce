@@ -31,7 +31,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (session?.data?.user) {
-      console.log("User:", session.data.user);
+      // console.log("User:", session.data.user);
 
     }
   }, [session]);
