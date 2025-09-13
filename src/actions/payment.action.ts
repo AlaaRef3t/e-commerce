@@ -22,7 +22,73 @@ export async function getCashPayment(cartId: string, shippingAddress : {shipping
             }   
         )
 
-        console.log(response?.data , "cash payment data");
+        // console.log(response?.data , "cash payment data");
+        
+
+        return {
+            data: response?.data,
+            status: response?.status,
+            message:response?.data.message
+        }
+
+    } catch (error : unknown) {
+        if (axios.isAxiosError(error)) {
+            return {
+                data: [],
+                status: error.response?.status,
+                message: error.response?.data?.message || "An Error"
+            }
+        }
+    }
+    
+}
+export async function getOnlinePayment(cartId: string, shippingAddress : {shippingAddress :ShippingAddressType }) {
+    
+    try {
+        const token = await getUserToken();
+        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+             shippingAddress ,
+            {
+                headers: {
+                    token:token as string
+                }
+            }   
+        )
+
+        // console.log(response?.data , "online payment data");
+        
+
+        return {
+            data: response?.data,
+            status: response?.status,
+            message:response?.data.message
+        }
+
+    } catch (error : unknown) {
+        if (axios.isAxiosError(error)) {
+            return {
+                data: [],
+                status: error.response?.status,
+                message: error.response?.data?.message || "An Error"
+            }
+        }
+    }
+    
+}
+export async function getAllOrders(cartId :string) {
+    
+    try {
+        const token = await getUserToken();
+        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/user/${cartId}`,
+              
+            {
+                headers: {
+                    token:token as string
+                }
+            }   
+        )
+
+        // console.log(response?.data , "online payment data");
         
 
         return {

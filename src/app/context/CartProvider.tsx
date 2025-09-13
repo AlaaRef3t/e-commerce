@@ -22,7 +22,7 @@ export default function CartContextProvider({children}: {children: React.ReactNo
     const {data: session} = useSession()
     async function getUserCartBridge() {
         const response = await getUserCart()
-            console.log(response?.data);
+            // console.log(response?.data);
             
         setCartDetails(response?.data)
     }
