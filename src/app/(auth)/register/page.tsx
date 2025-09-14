@@ -41,7 +41,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-0px)] w-full flex items-center justify-center bg-gray-50 px-4 py-10">
+    <div className=" w-full flex  justify-center bg-gray-50 px-4 py-10">
       <div className="w-full max-w-[350px] sm:max-w-[380px] bg-white rounded-xl shadow-xl p-6">
         <p className="text-center font-extrabold text-2xl sm:text-3xl tracking-tight mb-6">
           Create your account

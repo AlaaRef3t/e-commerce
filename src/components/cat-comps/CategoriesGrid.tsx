@@ -13,13 +13,16 @@ export default function CategoriesGrid({ category }: { category: categories[] })
     });
 
     return (
-        <section className="container mx-auto lg:px-10 md:px-6 px-4 pb-12">
-            <div className="flex items-center justify-center gap-6 pb-6 md:pb-10 ">
+        <section className="container mx-auto lg:px-10 md:px-6 px-4 pb-12"
+        
+    data-aos="fade-up"
+    >
+            <div className="flex items-center justify-center gap-6 pb-6 md:pb-10 "
+            
+            >
                 <div
-    
                 >
                     <div
-                        data-aos="fade-right"
 
                         className="flex items-center gap-2 text-yellow-600/90 text-xs sm:text-sm text-center">
                         <Sparkles className="h-4 w-4" />
@@ -27,18 +30,16 @@ export default function CategoriesGrid({ category }: { category: categories[] })
                     </div>
 
                     <h2
-                        data-aos="fade-left"
 
                         className={`mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-gray-600 dark:from-white dark:via-neutral-200 dark:to-neutral-400`}
                     >
                         Our Categories
                     </h2>
                     <div
-                        data-aos="fade-right"
 
                         className="relative mt-3 h-[3px] w-24 sm:w-70 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600" />
                     <p
-                        data-aos="fade-left"
+                        
                         className="mt-3 text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-prose text-center">
                         Discover Featured Products our Customers love right now.
                     </p>
@@ -48,7 +49,6 @@ export default function CategoriesGrid({ category }: { category: categories[] })
             </div>
 
             <div
-                data-aos="fade-up"
                 className="
           grid gap-4 sm:gap-5
           sm:grid-cols-1
@@ -59,7 +59,7 @@ export default function CategoriesGrid({ category }: { category: categories[] })
             >
                 {category.map((cat) => (
                     <div
-                        data-aos="fade-up"
+                        
 
                         key={cat._id}
                         className="

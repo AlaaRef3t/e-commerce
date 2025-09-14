@@ -13,8 +13,6 @@ import Image from "next/image";
 import { StarRating } from "react-flexible-star-rating";
 import { Eye, ShoppingCart, Heart, Sparkles } from "lucide-react";
 import Link from "next/link";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { addProductToCart } from "@/actions/cart.action";
 import toast from "react-hot-toast";
 import { useCart } from "@/app/context/CartProvider";
@@ -43,14 +41,10 @@ export default function ProductCard({ product }: { product: Products }) {
   }
 
 
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
   return (
     <div className="group">
 
       <Card
-        data-aos="fade-up"
         className="
         h-[500px]
           relative overflow-hidden

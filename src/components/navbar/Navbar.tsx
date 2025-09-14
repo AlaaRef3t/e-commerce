@@ -171,7 +171,7 @@ export default function Navbar() {
           </div>
 
 
-          <div className="navbar-end gap-3">
+          <div className="navbar-end gap-3 pr-4">
             {/* Search / wish / cart */}
 
 
@@ -186,7 +186,7 @@ export default function Navbar() {
               <ShoppingCart size={22} />
             </Link>
 
-            <Link href="/wishlist" className="relative cursor-pointer hover:text-yellow-600">
+            <Link href="/wishlist" className="relative cursor-pointer hover:text-yellow-600 ">
               <Badge
                 variant="default"
                 className=" absolute -top-2 -right-1.5 !p-0 !h-[18px] !w-[18px] !rounded-full flex items-center justify-center  !bg-red-500 !text-white text-[10px] font-bold shadow  "
