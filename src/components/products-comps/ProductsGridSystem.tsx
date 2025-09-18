@@ -4,18 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { Products } from '../../interfaces/products.model';
 import ProductCard from './ProductCard';
 import { Sparkles } from 'lucide-react';
-import AOS from 'aos';
 
 
 
 export default function ProductsGridSystem({ products }: { products: Products[] }) {
 
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  });
+  
   return (
     <div
-       data-aos="fade-up"
       className='container mx-auto lg:px-10 md:px-6 px-4 
       pb-8       
   sm:pb-13     
@@ -54,7 +50,7 @@ export default function ProductsGridSystem({ products }: { products: Products[] 
 
       </div>
 
-      <div data-aos="fade-up" className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}  >
+      <div  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}  >
         {products.map((product) => <ProductCard key={product._id} product={product} />)}
       </div>
 

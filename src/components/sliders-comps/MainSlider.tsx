@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowRight } from 'lucide-react';
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -18,9 +16,7 @@ import { EffectCube, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function MainSlider() {
-      useEffect(() => {
-    AOS.init({ duration: 400 });
-  });
+   
     return (
         <div
 

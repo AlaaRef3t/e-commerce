@@ -4,18 +4,14 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { Sparkles, Eye } from "lucide-react";
 import type { categories } from "@/interfaces/categories.model";
-import AOS from "aos";
 import Link from "next/link";
 
 export default function CategoriesGrid({ category }: { category: categories[] }) {
-    useEffect(() => {
-        AOS.init({ duration: 700 });
-    });
+    
 
     return (
         <section className="container mx-auto lg:px-10 md:px-6 px-4 pb-12"
         
-    data-aos="fade-up"
     >
             <div className="flex items-center justify-center gap-6 pb-6 md:pb-10 "
             

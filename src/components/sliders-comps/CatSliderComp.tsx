@@ -11,8 +11,6 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 
-import AOS from "aos";
-import "aos/dist/aos.css";
 import Link from 'next/link';
 export default function CatSliderComp({ category }: { category: categories[] }) {
     const [mounted, setMounted] = useState(false);
@@ -20,14 +18,11 @@ export default function CatSliderComp({ category }: { category: categories[] }) 
     useEffect(() => {
         setMounted(true);
     }, []);
-    useEffect(() => {
-        AOS.init({ duration: 800 });
-    });
+   
 
 
     return (
         <section
-             data-aos="fade-up"
             className="container mx-auto lg:px-10 md:px-6 px-4   pb-8       
   sm:pb-13     
   md:pb-16    
@@ -79,7 +74,6 @@ export default function CatSliderComp({ category }: { category: categories[] }) 
             </div>
 
             <Swiper
-                data-aos="fade-up"
                 slidesPerView={1.15}
                 spaceBetween={18}
                 navigation

@@ -13,17 +13,12 @@ import {
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import Link from "next/link";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function BrandsCard({ brand }: { brand: Brands }) {
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
+  
   return (
     <>
       <Card
-        data-aos="fade-up"
         className="group relative h-[500px] overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_35px_rgba(0,0,0,0.10)]"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

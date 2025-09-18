@@ -4,7 +4,6 @@ import { Brands } from '@/interfaces/brands.model'
 import React, { useEffect, useState } from 'react'
 import { Products } from '../../interfaces/products.model';
 import { Sparkles } from 'lucide-react';
-import AOS from 'aos';
 
 import BrandsCard from './BrandsCard';
 import { useWishlist } from '@/app/context/WishlistProvider';
@@ -18,9 +17,7 @@ export default function BrandsComp({ brands }: { brands: Brands[] }) {
   console.log(x, "wishlist test from brands");
 
 
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  });
+ 
   return (
     <div className='container mx-auto lg:px-10 md:px-6 px-4 
       pb-8       
@@ -29,7 +26,6 @@ export default function BrandsComp({ brands }: { brands: Brands[] }) {
   lg:pb-20   
   xl:pb-22 '
     
-  data-aos="fade-up"
   >
       <div className="flex items-center justify-center gap-6 pb-6 md:pb-10 ">
         <div
@@ -60,7 +56,7 @@ export default function BrandsComp({ brands }: { brands: Brands[] }) {
 
       </div>
 
-      <div data-aos="fade-up" className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}  >
+      <div  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2`}  >
         {brands.map((brand) => <BrandsCard key={brand._id} brand={brand} />)}
       </div>
 
