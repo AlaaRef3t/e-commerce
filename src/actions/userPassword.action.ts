@@ -57,7 +57,7 @@ export async function resetUserPassword(resetCode: string) {
 
 export async function updateUserPassword(body: UpdatePasswordModel) {
   try {
-    const response = await axios.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`, { body });
+    const response = await axios.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`,  body );
 
     return {
       data: response.data,

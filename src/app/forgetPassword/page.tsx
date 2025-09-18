@@ -25,12 +25,13 @@ export default function ForgetPassword() {
     async function onSubmit(values: ForgetPasswordInputs) {
         try {
             const response = await getUserPassword(values.email)
-            if (response?.message == "success") {
+            if (response?.data?.statusMsg === "success") {
                 toast.success("Code Sent Successfully!")
                 setErrorMessage(null)
                 router.push("/resetPassword")
-            console.log(response);
+            
         }
+        console.log(response);
         } catch (error) {
             toast.error("An error occurred during login!")
             console.error(error)

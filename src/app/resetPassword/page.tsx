@@ -25,11 +25,11 @@ export default function ResetPassword() {
     async function onSubmit(values: ResetPasswordInputs) {
         try {
             const response = await resetUserPassword(values.resetCode);
-            if (response?.message == "success") {
+            if (response?.data?.status === "Success") {
                 toast.success("Successfully Reset!")
                 setErrorMessage(null)
                 router.push("/updatePassword")
-            console.log(response?.message);
+            console.log(response);
         }
         } catch (error) {
             toast.error("An error occurred during reset!")

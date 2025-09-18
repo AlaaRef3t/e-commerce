@@ -23,12 +23,13 @@ export default function UpdatePassword() {
     async function onSubmit(values: UpdatePasswordModel) {
         try {
             const response = await updateUserPassword(values);
-            if (response?.message == "success") {
+            if (response?.data) {
                 toast.success("Password Updated Successfully!")
                 setErrorMessage(null)
                 router.push("/login")
-            console.log(response?.message);
-        }
+            console.log(response);
+            }
+            // console.log(response);
         } catch (error) {
             toast.error("An error occurred during reset!")
             console.error(error)
