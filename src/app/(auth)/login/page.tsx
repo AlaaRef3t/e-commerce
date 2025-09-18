@@ -97,9 +97,11 @@ export default function LoginPage() {
             <p className="text-red-800">{errors.password.message}</p>
           )}
 
-          <p className="m-0 text-right text-gray-500 underline underline-offset-2 text-[10px] sm:text-xs hover:text-black cursor-pointer">
-            Forgot Password?
-          </p>
+          <Link href="forgetPassword">
+            <p className="m-0 text-right text-gray-500 underline underline-offset-2 text-[10px] sm:text-xs hover:text-black cursor-pointer">
+              Forgot Password?
+            </p>
+          </Link>
 
           <button
             type="submit"
